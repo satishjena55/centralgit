@@ -1,7 +1,7 @@
-pipeline{
+pipeline{ 
     agent any
     stages{
-        stage("Sonarqube analysis"){
+        stage("Sonarqube analysis and code analysys"){
             steps{
                 script{
                 withSonarQubeEnv(credentialsId: 'new_sonar') {
@@ -22,6 +22,7 @@ pipeline{
             steps{
                 script{
                     sh 'mvn clean deploy'
+		    sh 'mvn clean install'
                 }
             }
         }
